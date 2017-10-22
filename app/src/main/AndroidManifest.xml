@@ -7,7 +7,6 @@
         android:icon="@mipmap/ic_launcher"
         android:label="Touch Coin"
         android:theme="@style/AppTheme">
-
         <activity
             android:name=".Main2Activity"
             android:label="Touch Coin"
@@ -20,15 +19,23 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:label="Touch Coin">
-
-        </activity>
+            android:label="Touch Coin" />
         <activity
             android:name=".LoginActivity"
             android:theme="@style/AppTheme.Dark" />
         <activity
             android:name=".SignupActivity"
             android:theme="@style/AppTheme.Dark" />
+        <activity android:name=".BalanceActivity" />
+        <activity
+            android:name=".BalanceActivity2"
+            android:label="Balance"
+            android:parentActivityName=".Main2Activity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.sourcey.materiallogindemo.Main2Activity" />
+        </activity>
     </application>
 
 </manifest>

@@ -1,7 +1,5 @@
 package com.sourcey.materiallogindemo;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -14,26 +12,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
-import android.widget.VideoView;
-import com.sourcey.materiallogindemo.R;
 
-import butterknife.Bind;
-
-public class Main2Activity extends AppCompatActivity
+public class BalanceActivity2 extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        //--- text view---
-        TextView txtView = (TextView) findViewById(R.id.textView);
-        //txtView.setText(LoginActivity.getUsername());
-
-        setContentView(R.layout.activity_main2);
-
+        setContentView(R.layout.activity_balanceactivity2);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -45,8 +31,6 @@ public class Main2Activity extends AppCompatActivity
                         .setAction("Action", null).show();
             }
         });
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -71,7 +55,7 @@ public class Main2Activity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main2, menu);
+        getMenuInflater().inflate(R.menu.balanceactivity2, menu);
         return true;
     }
 
@@ -97,11 +81,7 @@ public class Main2Activity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            // Start the Balance Activity
-            Intent intent = new Intent(getApplicationContext(), BalanceActivity2.class);
-            startActivityForResult(intent, 1);
-            finish();
-            overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
+            // Handle the camera action
         } else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_slideshow) {
