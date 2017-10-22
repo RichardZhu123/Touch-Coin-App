@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import java.io.IOError;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -25,19 +26,34 @@ import butterknife.Bind;
 public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "LoginActivity";
     private static final int REQUEST_SIGNUP = 0;
-    SharedPreferences usernameValues;
-    SharedPreferences passwordValues;
+    public static ArrayList<String> usernames = new ArrayList<>();
+    public static ArrayList<String> passwords = new ArrayList<>();
+    public static ArrayList<String> names = new ArrayList<>();
+    public static ArrayList<String> addresses = new ArrayList<>();
+    public static int currentUserIndex = -1;
+    SharedPreferences mSettings;
+    //SharedPreferences usernameValues;
+    //SharedPreferences passwordValues;
 
     @Bind(R.id.input_email) EditText _emailText;
     @Bind(R.id.input_password) EditText _passwordText;
     @Bind(R.id.btn_login) Button _loginButton;
     @Bind(R.id.link_signup) TextView _signupLink;
 
+
+    public static int indexOfUser(String s)
+    {
+        return usernames.indexOf(s);
+    }
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        usernameValues = this.getSharedPreferences("touchCoinUsernames", 0);
-        passwordValues = this.getSharedPreferences("touchCoinPasswords", 0);
+        //usernameValues = this.getSharedPreferences("touchCoinUsernames", 0);
+        //passwordValues = this.getSharedPreferences("touchCoinPasswords", 0);
+        mSettings = this.getSharedPreferences("Settings", Context.MODE_PRIVATE);
+
+        usernames.add(mSettings.getString("touchCoinUsernames", null));
+        passwords.add(mSettings.getString("touchCoinPasswords", null));
 
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
@@ -131,6 +147,26 @@ public class LoginActivity extends AppCompatActivity {
         String email = _emailText.getText().toString();
         String password = _passwordText.getText().toString();
 
+
+        /**
+         *
+         *
+         *
+         * *******************************TEST CODE*********************************
+         *
+         *
+         */
+
+        /*if(passwords.get(passwords.size() - 1).equals("asdf") && usernames.get(passwords.size() - 1).equals("asdf@gmail.com"))
+        {
+            return valid;
+        }*/
+
+        /*
+
+        ``````````````````````````````````END TEST CODE``````````````````````````````
+
+         */
         if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             _emailText.setError("enter a valid email address");
             valid = false;
@@ -151,7 +187,7 @@ public class LoginActivity extends AppCompatActivity {
 
         SignupActivity.setCurrentUserIndex(index);
 
-        if(index == -1 || (index != -1 && !SignupActivity.passAt(index).equals(password)))
+        if(indexOfUser(email) == -1 || (indexOfUser(email) != -1 && !passwords.get(indexOfUser(email)).equals(password)))
         {
             _passwordText.setError("Email and/or password was entered incorrectly");
             valid = false;

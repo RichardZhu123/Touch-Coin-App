@@ -26,9 +26,10 @@ public class SignupActivity extends AppCompatActivity {
     private static final String TAG = "SignupActivity";
     //SharedPreferences usernameValues = new ObscuredSharedPreferences(this, this.getSharedPreferences("touchCoinUsernames", Context.MODE_PRIVATE) );
     //SharedPreferences passwordValues = new ObscuredSharedPreferences(this, this.getSharedPreferences("touchCoinPasswords", Context.MODE_PRIVATE) );
-    SharedPreferences usernameValues;
-    SharedPreferences passwordValues;
+    //SharedPreferences usernameValues;
+    //SharedPreferences passwordValues;
     SharedPreferences mSettings;
+    SharedPreferences.Editor editor;
     //SharedPreferences.Editor userEditor = usernameValues.edit();
     //SharedPreferences.Editor passwordEditor = passwordValues.edit();
 
@@ -107,7 +108,7 @@ public class SignupActivity extends AppCompatActivity {
         //usernameValues = this.getSharedPreferences("touchCoinUsernames", 0);
         //passwordValues = this.getSharedPreferences("touchCoinPasswords", 0);
         mSettings = this.getSharedPreferences("Settings", Context.MODE_PRIVATE);
-        
+        editor = mSettings.edit();
 
         setContentView(R.layout.activity_signup);
         ButterKnife.bind(this);
@@ -129,8 +130,8 @@ public class SignupActivity extends AppCompatActivity {
                 overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
             }
         });
-        //usernames.add(usernameValues.getString("touchCoinUsernames", null));
-        //passwords.add(passwordValues.getString("touchCoinPasswords", null));
+        usernames.add(mSettings.getString("touchCoinUsernames", null));
+        passwords.add(mSettings.getString("touchCoinPasswords", null));
         //System.out.println(usernameValues.getString("touchCoinUsernames", null));
         // passwords = new ArrayList(passwordValues.getStringSet("touchCoinPasswords", null));
         // names = new ArrayList(prefs.getStringSet("touchCoinNames", null));
@@ -163,6 +164,9 @@ public class SignupActivity extends AppCompatActivity {
         // TODO: Implement your own signup logic here.
         usernames.add(email);
         passwords.add(password);
+        editor.putString("touchCoinUsernames", usernames.get(usernames.size() - 1));
+        editor.putString("touchCoinPasswords", passwords.get(passwords.size() - 1));
+        editor.apply();
         //usernameValues.edit().putStringSet("touchCoinUsernames", new HashSet<String>(usernames));
         //passwordValues.edit().putStringSet("touchCoinPasswords", new HashSet<String>(passwords));
 
