@@ -38,7 +38,7 @@
         </activity>
         <activity
             android:name=".TapActivity"
-            android:label="@string/title_activity_tap"
+            android:label="Tap"
             android:parentActivityName=".Main2Activity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
@@ -47,7 +47,7 @@
         </activity>
         <activity
             android:name=".TransactionHistoryActivity"
-            android:label="@string/title_activity_transaction_history"
+            android:label="Transaction History"
             android:parentActivityName=".Main2Activity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data

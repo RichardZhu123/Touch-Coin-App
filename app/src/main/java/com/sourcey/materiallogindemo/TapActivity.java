@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 
 public class TapActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -28,7 +29,16 @@ public class TapActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Coming soon!", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
+
+        Button tap = (Button) findViewById(R.id.button);
+        tap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Payment Transferred!", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
@@ -103,7 +113,7 @@ public class TapActivity extends AppCompatActivity
             // Start the Logout Activity
             Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
             startActivityForResult(intent, 1);
-            finish();
+            // finish();
             overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
         } else if (id == R.id.nav_share) {
 

@@ -41,7 +41,7 @@ public class Main2Activity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Coming soon!", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
@@ -118,7 +118,6 @@ public class Main2Activity extends AppCompatActivity
             // Start the Logout Activity
             Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
             startActivityForResult(intent, 1);
-            finish();
             overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
         } else if (id == R.id.nav_share) {
 
