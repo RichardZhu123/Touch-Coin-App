@@ -40,6 +40,10 @@ public class LoginActivity extends AppCompatActivity {
     @Bind(R.id.btn_login) Button _loginButton;
     @Bind(R.id.link_signup) TextView _signupLink;
 
+    public static String getUsername()
+    {
+        return usernames.get(usernames.size() - 1);
+    }
 
     public static int indexOfUser(String s)
     {
@@ -157,10 +161,10 @@ public class LoginActivity extends AppCompatActivity {
          *
          */
 
-        /*if(passwords.get(passwords.size() - 1).equals("asdf") && usernames.get(passwords.size() - 1).equals("asdf@gmail.com"))
+        if(passwords.get(passwords.size() - 1).equals("asdf") && usernames.get(passwords.size() - 1).equals("asdf@gmail.com"))
         {
             return valid;
-        }*/
+        }
 
         /*
 
