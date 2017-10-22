@@ -103,11 +103,23 @@ public class Main2Activity extends AppCompatActivity
             finish();
             overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
         } else if (id == R.id.nav_gallery) {
-
+            // Start the Tap Activity
+            Intent intent = new Intent(getApplicationContext(), TapActivity.class);
+            startActivityForResult(intent, 1);
+            finish();
+            overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
         } else if (id == R.id.nav_slideshow) {
-
+            // Start the Transaction History Activity
+            Intent intent = new Intent(getApplicationContext(), TransactionHistoryActivity.class);
+            startActivityForResult(intent, 1);
+            finish();
+            overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
         } else if (id == R.id.nav_manage) {
-
+            // Start the Logout Activity
+            Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+            startActivityForResult(intent, 1);
+            finish();
+            overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {

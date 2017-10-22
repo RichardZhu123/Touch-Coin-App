@@ -36,6 +36,24 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.sourcey.materiallogindemo.Main2Activity" />
         </activity>
+        <activity
+            android:name=".TapActivity"
+            android:label="@string/title_activity_tap"
+            android:parentActivityName=".Main2Activity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.sourcey.materiallogindemo.Main2Activity" />
+        </activity>
+        <activity
+            android:name=".TransactionHistoryActivity"
+            android:label="@string/title_activity_transaction_history"
+            android:parentActivityName=".Main2Activity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.sourcey.materiallogindemo.Main2Activity" />
+        </activity>
     </application>
 
 </manifest>

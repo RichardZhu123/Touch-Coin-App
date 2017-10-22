@@ -123,7 +123,11 @@ public class LoginActivity extends AppCompatActivity {
 
                 // TODO: Implement successful signup logic here
                 // By default we just finish the Activity and log them in automatically
-                this.finish();
+                //  Go to MainActivity
+                Intent intent = new Intent(getApplicationContext(), Main2Activity.class);
+                startActivityForResult(intent, 1);
+                finish();
+                overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
             }
         }
     }

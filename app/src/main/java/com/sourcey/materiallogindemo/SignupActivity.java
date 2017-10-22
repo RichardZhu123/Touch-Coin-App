@@ -179,6 +179,7 @@ public class SignupActivity extends AppCompatActivity {
                         // On complete call either onSignupSuccess or onSignupFailed
                         // depending on success
                         onSignupSuccess();
+
                         // onSignupFailed();
                         progressDialog.dismiss();
                     }
@@ -189,7 +190,11 @@ public class SignupActivity extends AppCompatActivity {
     public void onSignupSuccess() {
         _signupButton.setEnabled(true);
         setResult(RESULT_OK, null);
+        //  Go to MainActivity
+        Intent intent = new Intent(getApplicationContext(), Main2Activity.class);
+        startActivityForResult(intent, 1);
         finish();
+        overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
     }
 
     public void onSignupFailed() {
