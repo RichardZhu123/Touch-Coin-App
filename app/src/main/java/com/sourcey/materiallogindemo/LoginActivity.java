@@ -25,19 +25,20 @@ import butterknife.Bind;
 public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "LoginActivity";
     private static final int REQUEST_SIGNUP = 0;
-    SharedPreferences prefs = new ObscuredSharedPreferences(this, this.getSharedPreferences("com.sourcey.materiallogindemo", Context.MODE_PRIVATE));
-    Set<String> setUsernames = new HashSet<String>(SignupActivity.getUsernames());
-    boolean b = prefs.edit().putStringSet("usernames", setUsernames).commit();
-    String s = prefs.getString("foo", null);
+    SharedPreferences usernameValues;
+    SharedPreferences passwordValues;
 
     @Bind(R.id.input_email) EditText _emailText;
     @Bind(R.id.input_password) EditText _passwordText;
     @Bind(R.id.btn_login) Button _loginButton;
     @Bind(R.id.link_signup) TextView _signupLink;
-    
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        usernameValues = this.getSharedPreferences("touchCoinUsernames", 0);
+        passwordValues = this.getSharedPreferences("touchCoinPasswords", 0);
+
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
         
@@ -144,6 +145,10 @@ public class LoginActivity extends AppCompatActivity {
             _passwordText.setError(null);
         }
         int index = SignupActivity.indexOfUser(email);
+
+        //String usernameValue = SignupActivity.getUsernameAt(0);
+        //String passwordValue = SignupActivity.getPasswordAt(0);
+
         SignupActivity.setCurrentUserIndex(index);
 
         if(index == -1 || (index != -1 && !SignupActivity.passAt(index).equals(password)))

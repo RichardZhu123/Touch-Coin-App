@@ -1,6 +1,7 @@
 package com.sourcey.materiallogindemo;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -17,6 +18,7 @@ public class MainActivity extends ActionBarActivity {
 
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
+
     }
 
     @Override

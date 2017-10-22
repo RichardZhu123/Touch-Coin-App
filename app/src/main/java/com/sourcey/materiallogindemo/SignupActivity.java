@@ -1,5 +1,6 @@
 package com.sourcey.materiallogindemo;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -21,13 +22,21 @@ import butterknife.ButterKnife;
 import butterknife.Bind;
 
 public class SignupActivity extends AppCompatActivity {
-    private static final String TAG = "SignupActivity";
-    final SharedPreferences prefs = new ObscuredSharedPreferences(this, this.getSharedPreferences("com.sourcey.materiallogindemo", Context.MODE_PRIVATE) );
 
-    public static ArrayList<String> usernames;
-    public static ArrayList<String> passwords;
-    public static ArrayList<String> names;
-    public static ArrayList<String> addresses;
+    private static final String TAG = "SignupActivity";
+    //SharedPreferences usernameValues = new ObscuredSharedPreferences(this, this.getSharedPreferences("touchCoinUsernames", Context.MODE_PRIVATE) );
+    //SharedPreferences passwordValues = new ObscuredSharedPreferences(this, this.getSharedPreferences("touchCoinPasswords", Context.MODE_PRIVATE) );
+    SharedPreferences usernameValues;
+    SharedPreferences passwordValues;
+    SharedPreferences mSettings;
+    //SharedPreferences.Editor userEditor = usernameValues.edit();
+    //SharedPreferences.Editor passwordEditor = passwordValues.edit();
+
+
+    public static ArrayList<String> usernames = new ArrayList<>();
+    public static ArrayList<String> passwords = new ArrayList<>();
+    public static ArrayList<String> names = new ArrayList<>();
+    public static ArrayList<String> addresses = new ArrayList<>();
     public static int currentUserIndex = -1;
 
     public static String getCurrentName()
@@ -43,6 +52,16 @@ public class SignupActivity extends AppCompatActivity {
     public static ArrayList<String> getUsernames()
     {
         return usernames;
+    }
+
+    public static String getUsernameAt(int index)
+    {
+        return usernames.get(index);
+    }
+
+    public static String getPasswordAt(int index)
+    {
+        return passwords.get(index);
     }
 
     public static void setUsernames(Set<String> setUsernames)
@@ -78,10 +97,18 @@ public class SignupActivity extends AppCompatActivity {
     @Bind(R.id.input_reEnterPassword) EditText _reEnterPasswordText;
     @Bind(R.id.btn_signup) Button _signupButton;
     @Bind(R.id.link_login) TextView _loginLink;
-    
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //usernameValues = this.getSharedPreferences("TouchCoinUsernames", 0);
+        //passwordValues = this.getSharedPreferences("TouchCoinPasswords", 0);
+
+        //usernameValues = this.getSharedPreferences("touchCoinUsernames", 0);
+        //passwordValues = this.getSharedPreferences("touchCoinPasswords", 0);
+        mSettings = this.getSharedPreferences("Settings", Context.MODE_PRIVATE);
+        
+
         setContentView(R.layout.activity_signup);
         ButterKnife.bind(this);
 
@@ -102,10 +129,12 @@ public class SignupActivity extends AppCompatActivity {
                 overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
             }
         });
-        usernames = new ArrayList(prefs.getStringSet("usernames", null));
-        passwords = new ArrayList(prefs.getStringSet("passwords", null));
-        names = new ArrayList(prefs.getStringSet("names", null));
-        addresses = new ArrayList(prefs.getStringSet("addresses", null));
+        //usernames.add(usernameValues.getString("touchCoinUsernames", null));
+        //passwords.add(passwordValues.getString("touchCoinPasswords", null));
+        //System.out.println(usernameValues.getString("touchCoinUsernames", null));
+        // passwords = new ArrayList(passwordValues.getStringSet("touchCoinPasswords", null));
+        // names = new ArrayList(prefs.getStringSet("touchCoinNames", null));
+        // addresses = new ArrayList(prefs.getStringSet("touchCoinAddresses", null));
     }
 
     public void signup() {
@@ -134,8 +163,11 @@ public class SignupActivity extends AppCompatActivity {
         // TODO: Implement your own signup logic here.
         usernames.add(email);
         passwords.add(password);
-        prefs.edit().putStringSet("usernames", new HashSet<String>(usernames));
-        prefs.edit().putStringSet("passwords", new HashSet<String>(usernames));
+        //usernameValues.edit().putStringSet("touchCoinUsernames", new HashSet<String>(usernames));
+        //passwordValues.edit().putStringSet("touchCoinPasswords", new HashSet<String>(passwords));
+
+        //String uuuser = usernameValues.getString("touchCoinUsernames", null);
+        //String pppasswords = passwordValues.getString("touchCoinPasswords", null);
 
         new android.os.Handler().postDelayed(
                 new Runnable() {
@@ -219,4 +251,6 @@ public class SignupActivity extends AppCompatActivity {
 
         return valid;
     }
+
+
 }
